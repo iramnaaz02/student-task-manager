@@ -60,21 +60,43 @@ function displayTasks() {
         }
 
         const taskDiv = document.createElement("div");
+        let deadlineMessage = "";
+
+if (item.date) {
+
+    const today = new Date();
+    const deadline = new Date(item.date);
+
+    const difference = deadline - today;
+    const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+    if (daysLeft < 0 && !item.completed) {
+        deadlineMessage = `<p class="overdue">⚠️ Overdue</p>`;
+    }
+    else if (daysLeft <= 2 && !item.completed) {
+        deadlineMessage = `<p class="warning">⚠️ Deadline approaching</p>`;
+    }
+}
 
         taskDiv.innerHTML = `
-            <h3>${item.task}</h3>
-            <p>Subject: ${item.subject}</p>
-            <p>Deadline: ${item.date}</p>
-            <p>Priority: ${item.priority}</p>
+    <h3>${item.task}</h3>
+    <p>Subject: ${item.subject}</p>
+    <p>Deadline: ${item.date}</p>
 
-            <button onclick="completeTask(${index})">
-                ${item.completed ? "Completed" : "Complete"}
-            </button>
+    <p class="priority ${item.priority.toLowerCase()}">
+        Priority: ${item.priority}
+    </p>
 
-            <button onclick="deleteTask(${index})">
-                Delete
-            </button>
-        `;
+    ${deadlineMessage}
+
+    <button onclick="completeTask(${index})">
+        ${item.completed ? "Completed" : "Complete"}
+    </button>
+
+    <button onclick="deleteTask(${index})">
+        Delete
+    </button>
+`;
 
         if (item.completed) {
             taskDiv.style.textDecoration = "line-through";

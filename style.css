@@ -149,3 +149,28 @@ h2 {
         flex-direction: column;
     }
 }
+.priority {
+    font-weight: bold;
+}
+
+.priority.high {
+    color: #dc2626;
+}
+
+.priority.medium {
+    color: #ea580c;
+}
+
+.priority.low {
+    color: #16a34a;
+}
+
+.warning {
+    font-weight: bold;
+    color: #ea580c;
+}
+
+.overdue {
+    font-weight: bold;
+    color: #dc2626;
+}
