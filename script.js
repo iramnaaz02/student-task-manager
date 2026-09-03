@@ -16,14 +16,34 @@ function addTask() {
     const taskDiv = document.createElement("div");
 
     taskDiv.innerHTML = `
-        <h3>${task}</h3>
-        <p>Subject: ${subject}</p>
-        <p>Deadline: ${date}</p>
-        <p>Priority: ${priority}</p>
-    `;
+    <h3>${task}</h3>
+    <p>Subject: ${subject}</p>
+    <p>Deadline: ${date}</p>
+    <p>Priority: ${priority}</p>
+
+    <button onclick="completeTask(this)">Complete</button>
+    <button onclick="deleteTask(this)">Delete</button>
+`;
 
     // Add task to the task list
     document.getElementById("taskList").appendChild(taskDiv);
+
+    function completeTask(button) {
+
+    const taskDiv = button.parentElement;
+
+    taskDiv.style.textDecoration = "line-through";
+
+    button.disabled = true;
+    button.innerText = "Completed";
+
+    function deleteTask(button) {
+
+    const taskDiv = button.parentElement;
+
+    taskDiv.remove();
+}
+}
 
     // Clear the form
     document.getElementById("taskInput").value = "";
