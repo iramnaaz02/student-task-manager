@@ -34,24 +34,24 @@
             <button onclick="addTask()">Add Task</button>
 
         </div>
-<div class="dashboard">
+<div class="task-controls">
 
-    <div class="stat-card">
-        <h3>Total Tasks</h3>
-        <p id="totalTasks">0</p>
-    </div>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search tasks..."
+        oninput="displayTasks()"
+    >
 
-    <div class="stat-card">
-        <h3>Pending</h3>
-        <p id="pendingTasks">0</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Completed</h3>
-        <p id="completedTasks">0</p>
-    </div>
+    <select id="statusFilter" onchange="displayTasks()">
+        <option value="All">All Tasks</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+    </select>
 
 </div>
+
+
         <h2>My Tasks</h2>
         
 

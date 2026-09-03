@@ -35,9 +35,29 @@ function displayTasks() {
 
     const taskList = document.getElementById("taskList");
 
+    const searchText = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const statusFilter = document.getElementById("statusFilter").value;
+
     taskList.innerHTML = "";
 
     tasks.forEach((item, index) => {
+
+        const matchesSearch =
+            item.task.toLowerCase().includes(searchText) ||
+            item.subject.toLowerCase().includes(searchText);
+
+        const matchesStatus =
+            statusFilter === "All" ||
+            (statusFilter === "Pending" && !item.completed) ||
+            (statusFilter === "Completed" && item.completed);
+
+        if (!matchesSearch || !matchesStatus) {
+            return;
+        }
 
         const taskDiv = document.createElement("div");
 
@@ -62,6 +82,7 @@ function displayTasks() {
 
         taskList.appendChild(taskDiv);
     });
+
     updateDashboard();
 }
 
