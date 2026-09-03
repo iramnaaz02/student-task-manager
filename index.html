@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,53 +14,210 @@
 
     <div class="container">
 
-        <h1>Student Task Manager</h1>
+        <!-- Header -->
+        <header class="header">
 
-        <p>Manage your academic tasks easily.</p>
+            <div>
+                <h1>🎓 Student Task Manager</h1>
+                <p>Your personal academic productivity dashboard</p>
+            </div>
 
-        <div class="task-form">
+            <button id="themeButton" onclick="toggleTheme()">
+                🌙
+            </button>
 
-            <input type="text" id="taskInput" placeholder="Enter your task">
+        </header>
 
-            <input type="text" id="subjectInput" placeholder="Enter subject">
 
-            <input type="date" id="dateInput">
+        <!-- Dashboard -->
+        <div class="dashboard">
 
-            <select id="priorityInput">
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-            </select>
+            <div class="stat-card">
+                <span>📋</span>
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
+            </div>
 
-            <button onclick="addTask()">Add Task</button>
+            <div class="stat-card">
+                <span>⏳</span>
+                <h3>Pending</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <span>✅</span>
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <span>🔥</span>
+                <h3>High Priority</h3>
+                <p id="highTasks">0</p>
+            </div>
 
         </div>
-<div class="task-controls">
-
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search tasks..."
-        oninput="displayTasks()"
-    >
-
-    <select id="statusFilter" onchange="displayTasks()">
-        <option value="All">All Tasks</option>
-        <option value="Pending">Pending</option>
-        <option value="Completed">Completed</option>
-    </select>
-
-</div>
 
 
-        <h2>My Tasks</h2>
-        
+        <!-- Add Task -->
+        <section class="task-form">
 
-        <div id="taskList"></div>
+            <h2>➕ Add New Task</h2>
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter task name"
+            >
+
+            <input
+                type="text"
+                id="subjectInput"
+                placeholder="Enter subject"
+            >
+
+            <div class="form-row">
+
+                <input
+                    type="date"
+                    id="dateInput"
+                >
+
+                <select id="priorityInput">
+
+                    <option value="High">High Priority</option>
+
+                    <option value="Medium" selected>
+                        Medium Priority
+                    </option>
+
+                    <option value="Low">
+                        Low Priority
+                    </option>
+
+                </select>
+
+                <select id="categoryInput">
+
+                    <option value="Assignment">
+                        Assignment
+                    </option>
+
+                    <option value="Lab">
+                        Lab
+                    </option>
+
+                    <option value="Exam">
+                        Exam
+                    </option>
+
+                    <option value="Project">
+                        Project
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button class="add-button" onclick="addTask()">
+                + Add Task
+            </button>
+
+        </section>
+
+
+        <!-- Search & Filter -->
+        <section class="controls">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔎 Search tasks or subjects..."
+                oninput="displayTasks()"
+            >
+
+            <select
+                id="statusFilter"
+                onchange="displayTasks()"
+            >
+
+                <option value="All">
+                    All Tasks
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+            <select
+                id="priorityFilter"
+                onchange="displayTasks()"
+            >
+
+                <option value="All">
+                    All Priorities
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+                <option value="Low">
+                    Low
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Task List -->
+        <section>
+
+            <div class="task-heading">
+
+                <h2>📚 My Tasks</h2>
+
+                <span id="taskCount">
+                    0 tasks
+                </span>
+
+            </div>
+
+            <div id="taskList"></div>
+
+        </section>
+
+
+        <!-- Empty State -->
+        <div id="emptyMessage" class="empty-message">
+
+            <div>📭</div>
+
+            <h3>No tasks found</h3>
+
+            <p>Add a task to get started.</p>
+
+        </div>
 
     </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
