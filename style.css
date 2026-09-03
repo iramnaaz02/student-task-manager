@@ -325,3 +325,49 @@ body.dark #taskCount {
         width: 94%;
     }
 }
+.upcoming-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.upcoming-card {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+}
+
+.upcoming-card:last-child {
+    margin-bottom: 0;
+}
+
+.upcoming-card h3 {
+    margin-bottom: 6px;
+}
+
+.upcoming-card p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.no-upcoming {
+    color: #6b7280;
+    text-align: center;
+    padding: 15px;
+}
+
+body.dark .upcoming-section {
+    background: #1f2937;
+}
+
+body.dark .upcoming-card {
+    background: #374151;
+}
+
+body.dark .upcoming-card p {
+    color: #9ca3af;
+}

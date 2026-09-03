@@ -175,6 +175,7 @@ function displayTasks() {
         visibleTasks === 0 ? "block" : "none";
 
     updateDashboard();
+    displayUpcomingTasks();
 
 }
 
@@ -279,5 +280,46 @@ if (
 
 
 // START APPLICATION
+function displayUpcomingTasks() {
 
+    const upcomingContainer =
+        document.getElementById("upcomingTasks");
+
+    upcomingContainer.innerHTML = "";
+
+    const upcomingTasks = tasks
+        .filter(item => item.date && !item.completed)
+        .sort((a, b) =>
+            new Date(a.date) - new Date(b.date)
+        )
+        .slice(0, 3);
+
+    if (upcomingTasks.length === 0) {
+
+        upcomingContainer.innerHTML = `
+            <div class="no-upcoming">
+                🎉 No upcoming deadlines!
+            </div>
+        `;
+
+        return;
+    }
+
+    upcomingTasks.forEach(item => {
+
+        const card = document.createElement("div");
+
+        card.className = "upcoming-card";
+
+        card.innerHTML = `
+            <h3>📌 ${item.task}</h3>
+            <p>📚 ${item.subject}</p>
+            <p>📅 Deadline: ${item.date}</p>
+            <p>🔥 ${item.priority} Priority</p>
+        `;
+
+        upcomingContainer.appendChild(card);
+
+    });
+}
 displayTasks();
