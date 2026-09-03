@@ -62,6 +62,7 @@ function displayTasks() {
 
         taskList.appendChild(taskDiv);
     });
+    updateDashboard();
 }
 
 function completeTask(index) {
@@ -83,3 +84,17 @@ function deleteTask(index) {
 }
 
 displayTasks();
+function updateDashboard() {
+
+    const total = tasks.length;
+
+    const completed = tasks.filter(function(item) {
+        return item.completed;
+    }).length;
+
+    const pending = total - completed;
+
+    document.getElementById("totalTasks").innerText = total;
+    document.getElementById("pendingTasks").innerText = pending;
+    document.getElementById("completedTasks").innerText = completed;
+}
